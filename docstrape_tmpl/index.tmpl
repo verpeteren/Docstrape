@@ -1,0 +1,54 @@
+{+ includeTemplate(publish.headerTemplate, data) +}
+<div id="index">
+	{+publish.classesIndex+}
+</div>
+<div class="span9">
+	<div class="row-fluid">
+		<!-- ============================== class title ============================ -->
+		<div class="span6">
+			<h1 class="section classTitle">Class index<if test="JSDOC.opt.D.topic">of {+JSDOC.opt.D.topic +}</if></h1>
+		</div>
+		<div class="span3" align="center">
+			<img src="{+ Link.base + publish.conf.staticDir + publish.conf.imgDir +}promotejsh.gif" width="150px" height="148px"/>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<for each="item" in="data">
+			<div class="span8 detail">
+				<h3 class="section">{+(new Link().toSymbol(item.alias))+}</h3>
+				{+resolveLinks(summarize(item.classDesc))+}
+				<if test="item.classDesc">
+					<span class="descriptionSummary">{+resolveLinks(item.classDesc)+}</span>
+					<hr/>
+				</if>
+				<if test="item.author">
+					<dl>
+						<dt class="heading">Author:</dt>
+						<div class="dline">
+							<dd>{+item.author+}</dd>
+						</div>
+					</dl>
+					<hr/>
+				</if>
+				<if test="item.version">
+					<dt class="heading">Version:</dt>
+					<div class="dline">
+						<dd>{+item.version+}</dd>
+					</div>
+					<hr/>
+				</if>
+				{! var locations = item.comment.getTag('location').map(function($){return $.toString().replace(/(^\$ ?| ?\$$)/g, '').replace(/^HeadURL: https:/g, 'http:');}) !}
+				<if test="locations.length">
+					<dt class="heading">Location:</dt>
+					<div class="dline">
+						<for each="location" in="locations">
+							<dd><a href="{+location+}">{+location+}</a></dd>
+						</for>
+					</div>
+					<hr/>
+				</if>
+			</div>
+		</for>
+	</div>
+</div>
+{+ includeTemplate(publish.footerTemplate, data) +}

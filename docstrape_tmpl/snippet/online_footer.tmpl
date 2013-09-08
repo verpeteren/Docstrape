@@ -1,0 +1,46 @@
+			<!-- start footers include-->
+			<div id="push"></div>
+		</div>
+		<!-- <div id="footer"> </div>-->
+		<div class="container">
+			<p class="muted credit"><!-- a Weelya project - Find us on GitHub: <iframe src="http://ghbtns.com/github-btn.html?user=APE-Project&repo=APE_Server&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>--></p>
+			<p class="muted credit">
+				<!--
+				<dl>
+					<if test="JSDOC.opt.D.copyright">
+						<dt>&copy;<dt>
+						<dd>{+JSDOC.opt.D.copyright+}</dd>
+					</if>
+					<dt>Documentation generator</dt>
+					<dd><a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> {+JSDOC.VERSION+}</dd>
+					<dt>Template</dt>
+					<dd><a href="{+publish.conf.templateLink+}" target="_blank">{+ publish.conf.templateName +}</a> {+publish.conf.templateVersion+}</dd>
+					<dt>Generated on<dt><dd>{!
+						var date = new Date();
+						var minutes = date.getMinutes() +"";
+						if (minutes.length == 1) {
+							minutes = '0'+ minutes;
+						}
+						var timeHuman = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate() + " " + date.getHours() + ":" + minutes;
+						var timeData = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate();
+						output += "<time datetime='"+ timeData +"' pubdate>" + timeHuman +"</time>";
+					!}</dd>
+				</dl>
+				-->
+			</p>
+		</div>
+		<!-- Bootstrap core JavaScript
+		================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script src="/static/js/jquery.min.js"></script>
+		<script src="/static/js/bootstrap.min.js"></script>
+		<script src="/static/js/prettify.js"></script>
+		<script src="/static/js/holder.js"></script>
+		<script src="/static/js/custom.js"></script>
+		<!-- end footers include -->
+		<script src="{+ Link.base + publish.conf.staticDir + publish.conf.jsDir +}docstrape.js"></script>
+		<script type="text/javascript">
+		</script>
+
+	</body>
+</html>
