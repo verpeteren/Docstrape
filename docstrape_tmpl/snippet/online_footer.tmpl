@@ -9,12 +9,12 @@
 				<dl>
 					<if test="JSDOC.opt.D.copyright">
 						<dt>&copy;<dt>
-						<dd>{+JSDOC.opt.D.copyright+}</dd>
+						<dd>{+ JSDOC.opt.D.copyright +}</dd>
 					</if>
 					<dt>Documentation generator</dt>
-					<dd><a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> {+JSDOC.VERSION+}</dd>
+					<dd><a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> {+ JSDOC.VERSION +}</dd>
 					<dt>Template</dt>
-					<dd><a href="{+publish.conf.templateLink+}" target="_blank">{+ publish.conf.templateName +}</a> {+publish.conf.templateVersion+}</dd>
+					<dd><a href="{+ publish.conf.templateLink +}" target="_blank">{+ publish.conf.templateName +}</a> {+ publish.conf.templateVersion +}</dd>
 					<dt>Generated on<dt><dd>{!
 						var date = new Date();
 						var minutes = date.getMinutes() +"";

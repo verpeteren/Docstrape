@@ -1,13 +1,13 @@
 {+ includeTemplate(publish.headerTemplate, data) +}
 <div id="index">
-	{+publish.classesIndex+}
+	{+ publish.classesIndex +}
 </div>
 
 <div class="span9">
 	<div class="row-fluid">
 		<!-- ============================== class title ============================ -->
 		<div class="span6">
-			<h1 class="section classTitle"><if test="JSDOC.opt.D.topic">{+JSDOC.opt.D.topic +} </if>{!
+			<h1 class="section classTitle"><if test="JSDOC.opt.D.topic">{+ JSDOC.opt.D.topic +} </if>{!
 				var classType = "";
 				if (data.isBuiltin()) {
 					classType += "Built-In ";
@@ -22,7 +22,7 @@
 					classType += "Class ";
 				}
 			!}
-			{+classType+}{+data.alias+}</h1>
+			{+ classType +}{+ data.alias +}</h1>
 		</div>
 		<div class="span3" align="center">
 			<img src="{+ Link.base + publish.conf.staticDir + publish.conf.imgDir +}promotejsh.gif" width="150px" height="148px"/>
@@ -61,7 +61,7 @@
 			}
 		!}
 		<ul class="nav nav-tabs nav-tabs-pannel">
-			<li class="{+activeList.summary+}" id="summary">
+			<li class="{+ activeList.summary +}" id="summary">
 				<a href="#class_summary" data-toggle="tab">Class summary</a>
 			</li>
 			<if test="!data.isBuiltin() && (data.isNamespace || data.is('CONSTRUCTOR'))">
@@ -70,24 +70,24 @@
 				</li>
 			</if>
 			<if test="data.properties.length">
-				<li class="{+activeList.properties+}" id="properties">
+				<li class="{+ activeList.properties +}" id="properties">
 					<a href="#property_details" data-toggle="tab">{+ propertiesTag +}</a>
 				</li>
 			</if>
 			<if test="data.methods.length">
-				<li class="{+activeList.methods+}" id="methods">
+				<li class="{+ activeList.methods +}" id="methods">
 					<a href="#methods_details" data-toggle="tab">{+ methodTag +}</a>
 				</li>
 			</if>
 			<if test="data.events.length">
-				<li class="{+activeList.events+}" id="events">
+				<li class="{+ activeList.events +}" id="events">
 					<a href="#events_details" data-toggle="tab">Events</a>
 				</li>
 			</if>
 		</ul>
 		<div class="tab-content">
 			<!-- ============================== class summary ========================== -->
-			<div class="tab-pane {+activeList.summary+} jsdoc-pane" id="class_summary">
+			<div class="tab-pane {+ activeList.summary +} jsdoc-pane" id="class_summary">
 				<a name="class_summary"><h2><span class="variableName">Summary</span></h2></a>
 				<if test="data.version">
 					<dl class="detailList">
@@ -111,22 +111,22 @@
 				</if>
 				<if test="data.classDesc">
 					<div class="description">
-						{+resolveLinks(data.classDesc)+}
+						{+ resolveLinks(data.classDesc) +}
 					</div>
 				</if>
 				<if test="!data.isBuiltin()">
 					<dl class="detailList">
 						<dt class="labelHeading">File</dt>
 						<div class="dline">
-							<dd>{+new Link().toSrc(data.srcFile)+}</dd>
+							<dd>{+ new Link().toSrc(data.srcFile) +}</dd>
 						</div>
 					</dl>
 				</if>
 			</div>
 			<!-- ============================== constructor details ==================== -->
-			<div class="tab-pane {+activeList.constructor+} jsdoc-pane" id="contructor_details">
+			<div class="tab-pane {+ activeList.constructor +} jsdoc-pane" id="contructor_details">
 				<if test="!data.isBuiltin() && (data.isNamespace || data.is('CONSTRUCTOR'))">
-					<div class="details"><a name="constructor"><h2><span class="variableName">{+data.name+}</span> {+classType+}Detail</h2></a>
+					<div class="details"><a name="constructor"><h2><span class="variableName">{+ data.name +}</span> {+ classType +}Detail</h2></a>
 						<div class="storageClass">
 							{!
 							if (data.isPrivate) output += "&lt;private&gt; ";
@@ -139,14 +139,14 @@
 						</div>
 						<if test="data.desc">
 							<div class="description">
-								{+resolveLinks(data.desc)+}
+								{+ resolveLinks(data.desc) +}
 							</div>
 						</if>
 						<if test="data.srcFile">
 							<dl class="detailList">
 								<dt class="labelHeading">File:</dt>
 								<div class="dline">
-										<dd>{+new Link().toSrc(data.srcFile)+}</dd>
+										<dd>{+ new Link().toSrc(data.srcFile) +}</dd>
 									</div>
 								</dl>
 							</if>
@@ -164,18 +164,18 @@
 								<div class="dline">
 									<for each="item" in="data.params">
 										<dt>
-											<span class="parameterType">{+((item.type) ? "{" + (new Link().toSymbol(item.type)) + "} " : "&nbsp")+}</span>
-											<span class="variableName">{+item.name+}</span>
+											<span class="parameterType">{+ ((item.type) ? "{" + (new Link().toSymbol(item.type)) + "} " : "&nbsp") +}</span>
+											<span class="variableName">{+ item.name +}</span>
 											<span class="parameterInfo">
 												<if test="item.isOptional">
 													<i>Optional</i>
 												</if>
 												<if test="item.defaultValue">
-													<i>Default: {+item.defaultValue+}</i>
+													<i>Default: {+ item.defaultValue +}</i>
 												</if>
 											</span>
 										</dt>
-										<dd><span class="descriptionSummary">{+resolveLinks(item.desc)+}</span></dd>
+										<dd><span class="descriptionSummary">{+ resolveLinks(item.desc) +}</span></dd>
 									</for>
 								</div>
 							</dl>
@@ -185,8 +185,8 @@
 								<dt class="labelHeading">Returns:</dt>
 								<div class="dline">
 									<for each="item" in="data.returns">
-										<dd><span class="parameterType">{+((item.type) ? "{" + (new Link().toSymbol(item.type)) + "} " : "&nbsp")+}</span>
-											<span class="descriptionSummary">{+resolveLinks(item.desc)+}</span>
+										<dd><span class="parameterType">{+ ((item.type) ? "{" + (new Link().toSymbol(item.type)) + "} " : "&nbsp") +}</span>
+											<span class="descriptionSummary">{+ resolveLinks(item.desc) +}</span>
 										</dd>
 									</for>
 								</div>
@@ -196,7 +196,7 @@
 							<dl class="detailList">
 								<dt class="labelHeading">Deprecated:</dt>
 								<div class="dline">
-									<dd>{+resolveLinks(data.deprecated)+}</dd>
+									<dd>{+ resolveLinks(data.deprecated) +}</dd>
 								</div>
 							</dl>
 						</if>
@@ -214,9 +214,9 @@
 								<div class="dline">
 									<for each="item" in="data.exceptions">
 										<dd>
-											<span class="parameterType">{+((item.type) ? "{" + (new Link().toSymbol(item.type)) + "} " : "&nbsp")+}</span>
-											<span class="variableName">{+item.name+}</span>
-											<span class="descriptionSummary">{+resolveLinks(item.desc)+}</span>
+											<span class="parameterType">{+ ((item.type) ? "{" + (new Link().toSymbol(item.type)) + "} " : "&nbsp") +}</span>
+											<span class="variableName">{+ item.name +}</span>
+											<span class="descriptionSummary">{+ resolveLinks(item.desc) +}</span>
 										</dd>
 									</for>
 								</div>
@@ -237,7 +237,7 @@
 								<dt class="labelHeading">{+ (data.example.length > 1) ? 'Examples': 'Example' +}</dt>
 								<for each="example" in="data.example">
 									<dd>
-										<pre class="code prettyprint linenums lang-javascript">{+example+}</pre>
+										<pre class="code prettyprint linenums lang-javascript">{+ example +}</pre>
 									</dd>
 								</for>
 							</dl>
@@ -248,7 +248,7 @@
 								<div class="dline">
 									<for each="item" in="data.see">
 										<dd>{+ new Link().toSymbol(item) +}
-											<if test="item.isa">({+item.isa+})</if>
+											<if test="item.isa">({+ item.isa +})</if>
 										</dd>
 									</for>
 								</div>
@@ -259,7 +259,7 @@
 				</if>
 			</div>
 			<!-- ============================== properties ========================================= -->
-			<div class="tab-pane {+activeList.properties+} jsdoc-pane" id="property_details">
+			<div class="tab-pane {+ activeList.properties +} jsdoc-pane" id="property_details">
 				<if test="data.properties.length">
 					{! var ownProperties = data.properties.filter(function($){
 						return $.memberOf == data.alias && !$.isNamespace}).sort(makeSortby("name"));
@@ -270,8 +270,8 @@
 						</li>
 						<if test="ownProperties.length">
 							<for each="member" in="ownProperties">
-								<li class="nested" id="{+Link.symbolNameToLinkName(member)+}_li">
-									{+new BLink().toAttributes('data-toggle=\"tab\"').toSymbol(member.alias).withText(member.name)+}
+								<li class="nested" id="{+ Link.symbolNameToLinkName(member) +}_li">
+									{+ new BLink().toAttributes('data-toggle=\"tab\"').toSymbol(member.alias).withText(member.name) +}
 								</li>
 							</for>
 						</if>
@@ -307,18 +307,18 @@
 												</td>
 												<td>
 													<if test="member.type">
-														<span class="parameterType">{{+new Link().toSymbol(member.type)+}}</span>
+														<span class="parameterType">{{+ new Link().toSymbol(member.type) +}}</span>
 													</if>
 													<if test="member.isStatic && member.memberOf != '_global_'">
-														<span class="parameterType">{+member.memberOf+}</span>
+														<span class="parameterType">{+ member.memberOf +}</span>
 													</if>
 												</td>
 												<td>
-													<span class="variableName">{+new BLink().toSymbol(member.alias).toAttributes('onClick="handleTabLinks(\'#' + Link.symbolNameToLinkName(member) + '\'); return false;"').withText(member.name.replace(/\^\d+$/, ''))+}</span>
+													<span class="variableName">{+ new BLink().toSymbol(member.alias).toAttributes('onClick="handleTabLinks(\'#' + Link.symbolNameToLinkName(member) + '\'); return false;"').withText(member.name.replace(/\^\d+$/, '')) +}</span>
 												</td>
 												<td>
 													<span class="descriptionSummary">
-														{+resolveLinks(summarize(member.desc))+}
+														{+ resolveLinks(summarize(member.desc)) +}
 													</span>
 												</td>
 											</tr>
@@ -354,7 +354,7 @@
 						<!-- ============================== properties details ===================== -->
 						<if test="defined(ownProperties) && ownProperties.length">
 							<for each="member" in="ownProperties">
-								<div class="tab-pane jsdoc-pane" id="{+Link.symbolNameToLinkName(member)+}">
+								<div class="tab-pane jsdoc-pane" id="{+ Link.symbolNameToLinkName(member) +}">
 									<h2>
 										<span class="storageClass">{! if (member.isPrivate) output += "&lt;private&gt; ";
 																	if (member.isInner) output += "&lt;inner&gt; ";
@@ -362,25 +362,25 @@
 																	if (member.isConstant) output += "&lt;constant&gt; "; !}
 										</span>
 										<if test="member.type">
-											<span class="parameterType">{{+new Link().toSymbol(member.type)+}}</span>
+											<span class="parameterType">{{+ new Link().toSymbol(member.type) +}}</span>
 										</if>
 										<if test="member.isStatic && member.memberOf != '_global_'">
-											<span class="parameterType">{+member.memberOf+}</span>
+											<span class="parameterType">{+ member.memberOf +}</span>
 										</if>
-										<a name="{+Link.symbolNameToLinkName(member)+}">
-											<span class="variableName">{+member.name+}</span>
+										<a name="{+ Link.symbolNameToLinkName(member) +}">
+											<span class="variableName">{+ member.name +}</span>
 										</a>
 									</h2>
 									<if test="member.desc">
 										<div class="description">
-											{+resolveLinks(member.desc)+}
+											{+ resolveLinks(member.desc) +}
 										</div>
 									</if>
 									<if test="member.srcFile != data.srcFile">
 										<dl class="detailList">
 											<dt class="labelHeading">File:</dt>
 											<div class="dline">
-												<dd>{+new Link().toSrc(member.srcFile)+}</dd>
+												<dd>{+ new Link().toSrc(member.srcFile) +}</dd>
 											</div>
 										</dl>
 									</if>
@@ -412,7 +412,7 @@
 										<dl class="detailList">
 											<dt class="labelHeading">Default Value:</dt>
 											<div class="dline">
-												<dd>{+resolveLinks(member.defaultValue)+}</dd>
+												<dd>{+ resolveLinks(member.defaultValue) +}</dd>
 											</div>
 										</dl>
 									</if>
@@ -421,7 +421,7 @@
 											<dt class="labelHeading">{+ (member.example.length > 1) ? 'Examples': 'Example' +}</dt>
 											<for each="example" in="member.example">
 												<dd>
-													<pre class="code prettyprint linenums lang-javascript">{+example+}</pre>
+													<pre class="code prettyprint linenums lang-javascript">{+ example +}</pre>
 												</dd>
 											</for>
 										</dl>
@@ -433,7 +433,7 @@
 												<for each="item" in="member.see">
 													<dd>{+ new Link().toSymbol(item) +}
 														<if test="item.isa">
-															({+item.isa+})
+															({+ item.isa +})
 														</if>
 													</dd>
 												</for>
@@ -451,7 +451,7 @@
 				</if>
 			</div>
 			<!-- ============================== methods ========================================== -->
-			<div class="tab-pane {+activeList.methods+} jsdoc-pane" id="methods_details">
+			<div class="tab-pane {+ activeList.methods +} jsdoc-pane" id="methods_details">
 				<if test="data.methods.length">
 					{! var ownMethods = data.methods.filter(function($){
 						return $.memberOf == data.alias  && !$.isNamespace}).sort(makeSortby("name"));
@@ -462,8 +462,8 @@
 					</li>
 					<if test="ownMethods.length">
 						<for each="member" in="ownMethods">
-							<li class="nested" id="{+Link.symbolNameToLinkName(member)+}_li">
-								{+new BLink().toAttributes('data-toggle=\"tab\"').toSymbol(member.alias).withText(member.name)+}
+							<li class="nested" id="{+ Link.symbolNameToLinkName(member) +}_li">
+								{+ new BLink().toAttributes('data-toggle=\"tab\"').toSymbol(member.alias).withText(member.name) +}
 							</li>
 						</for>
 					</if>
@@ -499,15 +499,15 @@
 											<td>
 												<span class="storageClass">
 													<if test="member.isStatic && member.memberOf != '_global_'">
-														{+member.memberOf+}.
+														{+ member.memberOf +}.
 													</if>
 												</span>
-												<span class="variableName">{+new BLink().toSymbol(member.alias).toAttributes('onClick="handleTabLinks(\'#' + Link.symbolNameToLinkName(member) + '\'); return false;"').withText(member.name.replace(/\^\d+$/, ''))+}</span>
-													{+makeSignature(member.params)+}
+												<span class="variableName">{+ new BLink().toSymbol(member.alias).toAttributes('onClick="handleTabLinks(\'#' + Link.symbolNameToLinkName(member) + '\'); return false;"').withText(member.name.replace(/\^\d+$/, '')) +}</span>
+													{+ makeSignature(member.params) +}
 											</td>
 											<td>
 												<span class="descriptionSummary">
-													{+resolveLinks(summarize(member.desc))+}
+													{+ resolveLinks(summarize(member.desc)) +}
 												</span>
 											</td>
 										</tr>
@@ -538,7 +538,7 @@
 						<!-- ============================== method details ========================= -->
 						<if test="defined(ownMethods) && ownMethods.length">
 							<for each="member" in="ownMethods">
-								<div class="tab-pane jsdoc-pane" id="{+Link.symbolNameToLinkName(member)+}">
+								<div class="tab-pane jsdoc-pane" id="{+ Link.symbolNameToLinkName(member) +}">
 									<h2>
 										<span class="storageClass">
 													{!
@@ -548,26 +548,26 @@
 													!}
 										</span>
 										<if test="member.type">
-											<span class="parameterType">{{+ new Link().toSymbol(member.type)+}}</span>
+											<span class="parameterType">{{+ new Link().toSymbol(member.type) +}}</span>
 										</if>
 										<if test="member.isStatic && member.memberOf != '_global_'">
-											<span class="parameterType">{+member.memberOf+}.</span>
+											<span class="parameterType">{+ member.memberOf +}.</span>
 										</if>
 										<a name="{+ Link.symbolNameToLinkName(member) +}">
-												<span class="variableName">{+member.name.replace(/\^\d+$/, '')+}</span>
-											{+makeSignature(member.params)+}
+												<span class="variableName">{+ member.name.replace(/\^\d+$/, '') +}</span>
+											{+ makeSignature(member.params) +}
 										</a>
 									</h2>
 									<if test="member.desc">
 										<div class="description">
-											{+resolveLinks(member.desc)+}
+											{+ resolveLinks(member.desc) +}
 										</div>
 									</if>
 									<if test="member.srcFile != data.srcFile">
 										<dl class="detailList">
 											<dt class="labelHeading">File:</dt>
 											<div class="dline">
-												<dd>{+new Link().toSrc(member.srcFile)+}</dd>
+												<dd>{+ new Link().toSrc(member.srcFile) +}</dd>
 											</div>
 										</dl>
 									</if>
@@ -585,17 +585,17 @@
 											<div class="dline">
 												<for each="item" in="member.params">
 													<dd>
-														<span class="parameterType">{+((item.type) ? "{" + (new Link().toSymbol(item.type)) + "} " : "&nbsp")+}</span>
-														<span class="variableName">{+item.name+}</span>
+														<span class="parameterType">{+ ((item.type) ? "{" + (new Link().toSymbol(item.type)) + "} " : "&nbsp") +}</span>
+														<span class="variableName">{+ item.name +}</span>
 														<span class="parameterInfo">
 															<if test="item.isOptional">
 																<i>Optional</i>
 															</if>
 															<if test="item.defaultValue">
-																<i>Default: {+item.defaultValue+}</i>
+																<i>Default: {+ item.defaultValue +}</i>
 															</if>
 														</span>
-														<span class="descriptionSummary">{+resolveLinks(item.desc)+}</span>
+														<span class="descriptionSummary">{+ resolveLinks(item.desc) +}</span>
 													</dd>
 												</for>
 											</div>
@@ -607,8 +607,8 @@
 											<div class="dline">
 												<for each="item" in="member.returns">
 													<dd>
-														<span class="parameterType">{+((item.type) ? "{" + (new Link().toSymbol(item.type)) + "} " : "&nbsp")+}</span>
-														<span class="descriptionSummary">{+resolveLinks(item.desc)+}</span>
+														<span class="parameterType">{+ ((item.type) ? "{" + (new Link().toSymbol(item.type)) + "} " : "&nbsp") +}</span>
+														<span class="descriptionSummary">{+ resolveLinks(item.desc) +}</span>
 													</dd>
 												</for>
 											</div>
@@ -636,9 +636,9 @@
 											<div class="dline">
 												<for each="item" in="member.exceptions">
 													<dd>
-														<span class="parameterType">{+((item.type) ? "{" + (new Link().toSymbol(item.type)) + "} " : "&nbsp")+}</span>
-														<span class="variableName">{+item.name+}</span>
-														<span class="descriptionSummary">{+resolveLinks(item.desc)+}</span>
+														<span class="parameterType">{+ ((item.type) ? "{" + (new Link().toSymbol(item.type)) + "} " : "&nbsp") +}</span>
+														<span class="variableName">{+ item.name +}</span>
+														<span class="descriptionSummary">{+ resolveLinks(item.desc) +}</span>
 													</dd>
 												</for>
 											</div>
@@ -659,7 +659,7 @@
 											<dt class="labelHeading">{+ (member.example.length > 1) ? 'Examples': 'Example' +}</dt>
 											<for each="example" in="member.example">
 												<dd>
-													<pre class="code prettyprint linenums lang-javascript">{+example+}</pre>
+													<pre class="code prettyprint linenums lang-javascript">{+ example +}</pre>
 												</dd>
 											</for>
 										</dl>
@@ -670,7 +670,7 @@
 											<div class="dline">
 												<for each="item" in="member.see">
 													<dd>{+ new Link().toSymbol(item) +}
-														<if test="item.isa">({+item.isa+})</if>
+														<if test="item.isa">({+ item.isa +})</if>
 													</dd>
 												</for>
 											</div>
@@ -687,7 +687,7 @@
 				</if>
 			</div>
 			<!-- ============================== events summary ======================== -->
-			<div class="tab-pane {+activeList.events+} jsdoc-pane" id="events_details">
+			<div class="tab-pane {+ activeList.events +} jsdoc-pane" id="events_details">
 				<if test="data.events.length">
 					{! var ownEvents = data.events.filter(function($){
 						return $.memberOf == data.alias  && !$.isNamespace}).sort(makeSortby("name"));
@@ -698,8 +698,8 @@
 								<a href="#events_summary" data-toggle="tab">Event summary</a>
 							</li>
 							<for each="member" in="ownEvents">
-								<li class="nested" id="{+Link.symbolNameToLinkName(member)+}_li">
-									{+new BLink().toAttributes('data-toggle=\"tab\"').toSymbol(member.alias).withText(member.name)+}
+								<li class="nested" id="{+ Link.symbolNameToLinkName(member) +}_li">
+									{+ new BLink().toAttributes('data-toggle=\"tab\"').toSymbol(member.alias).withText(member.name) +}
 								</li>
 							</for>
 						</ul>
@@ -734,14 +734,14 @@
 												<td>
 													<span class="storageClass">
 														<if test="member.isStatic && member.memberOf != '_global_'">
-															{+member.memberOf+}.
+															{+ member.memberOf +}.
 														</if>
 													</span>
-													<span class="variableName">{+new BLink().toSymbol(member.alias).toAttributes('onClick="handleTabLinks(\'#' + Link.symbolNameToLinkName(member) + '\'); return false;"').withText(member.name.replace(/\^\d+$/, ''))+}</span>
-													{+makeSignature(member.params)+}
+													<span class="variableName">{+ new BLink().toSymbol(member.alias).toAttributes('onClick="handleTabLinks(\'#' + Link.symbolNameToLinkName(member) + '\'); return false;"').withText(member.name.replace(/\^\d+$/, '')) +}</span>
+													{+ makeSignature(member.params) +}
 												</td>
 												<td>
-													<span class="descriptionSummary">{+resolveLinks(summarize(member.desc))+}</span>
+													<span class="descriptionSummary">{+ resolveLinks(summarize(member.desc)) +}</span>
 												</td>
 											</tr>
 										</for>
@@ -775,7 +775,7 @@
 						<!-- ============================== event details ========================= -->
 						<if test="defined(ownEvents) && ownEvents.length">
 							<for each="member" in="ownEvents">
-								<div class="tab-pane jsdoc-pane" id="{+Link.symbolNameToLinkName(member)+}">
+								<div class="tab-pane jsdoc-pane" id="{+ Link.symbolNameToLinkName(member) +}">
 									<h2>
 										<span class="storageClass">
 											{!
@@ -785,26 +785,26 @@
 											!}
 										</span>
 										<if test="member.type">
-											<span class="parameterType">{{+new Link().toSymbol(member.type)+}}</span>
+											<span class="parameterType">{{+ new Link().toSymbol(member.type) +}}</span>
 										</if>
 										<if test="member.isStatic && member.memberOf != '_global_'">
-											<span class="parameterType">{+member.memberOf+}.</span>
+											<span class="parameterType">{+ member.memberOf +}.</span>
 										</if>
 										<a name="{+ Link.symbolNameToLinkName(member) +}">
-											<span class="variableName">{+member.name+}</span>
-											{+makeSignature(member.params)+}
+											<span class="variableName">{+ member.name +}</span>
+											{+ makeSignature(member.params) +}
 										</a>
 									</h2>
 									<if test="member.desc">
 										<div class="description">
-											{+resolveLinks(member.desc)+}
+											{+ resolveLinks(member.desc) +}
 										</div>
 									</if>
 									<if test="member.srcFile != data.srcFile">
 										<dl class="detailList">
 											<dt class="labelHeading">File:</dt>
 											<div class="dline">
-												<dd>{+new Link().toSrc(member.srcFile)+}</dd>
+												<dd>{+ new Link().toSrc(member.srcFile) +}</dd>
 											</div>
 										</dl>
 									</if>
@@ -822,17 +822,17 @@
 											<div class="dline">
 												<for each="item" in="member.params">
 													<dd>
-														<span class="parameterType">{+((item.type) ? "{" + (new Link().toSymbol(item.type)) + "} " : "&nbsp")+}</span>
-														<span class="variableName">{+item.name+}</span>
+														<span class="parameterType">{+ ((item.type) ? "{" + (new Link().toSymbol(item.type)) + "} " : "&nbsp") +}</span>
+														<span class="variableName">{+ item.name +}</span>
 														<span class="parameterInfo">
 															<if test="item.isOptional">
 																<i>Optional</i>
 															</if>
 															<if test="item.defaultValue">
-																<i>Default: {+item.defaultValue+}</i>
+																<i>Default: {+ item.defaultValue +}</i>
 															</if>
 														</span>
-														<span class="descriptionSummary">{+resolveLinks(item.desc)+}</span>
+														<span class="descriptionSummary">{+ resolveLinks(item.desc) +}</span>
 													</dd>
 												</for>
 											</div>
@@ -844,8 +844,8 @@
 											<div class="dline">
 												<for each="item" in="member.returns">
 													<dd>
-														<span class="parameterType">{+((item.type) ? "{" + (new Link().toSymbol(item.type)) + "} " : "&nbsp")+}</span>
-														<span class="descriptionSummary">{+resolveLinks(item.desc)+}</span>
+														<span class="parameterType">{+ ((item.type) ? "{" + (new Link().toSymbol(item.type)) + "} " : "&nbsp") +}</span>
+														<span class="descriptionSummary">{+ resolveLinks(item.desc) +}</span>
 													</dd>
 												</for>
 											</div>
@@ -873,9 +873,9 @@
 											<div class="dline">
 												<for each="item" in="member.exceptions">
 													<dd>
-														<span class="parameterType">{+((item.type) ? "{" + (new Link().toSymbol(item.type)) + "} " : "&nbsp")+}</span>
-														<span class="variableName">{+item.name+}</span>
-														<span class="descriptionSummary">{+resolveLinks(item.desc)+}</span>
+														<span class="parameterType">{+ ((item.type) ? "{" + (new Link().toSymbol(item.type)) + "} " : "&nbsp") +}</span>
+														<span class="variableName">{+ item.name +}</span>
+														<span class="descriptionSummary">{+ resolveLinks(item.desc) +}</span>
 													</dd>
 												</for>
 											</div>
@@ -896,7 +896,7 @@
 											<dt class="labelHeading">{+ (member.example.length > 1) ? 'Examples': 'Example' +}</dt>
 											<for each="example" in="member.example">
 												<dd>
-													<pre class="code prettyprint linenums lang-javascript">{+example+}</pre>
+													<pre class="code prettyprint linenums lang-javascript">{+ example +}</pre>
 												</dd>
 											</for>
 										</dl>
@@ -907,7 +907,7 @@
 											<div class="dline">
 												<for each="item" in="member.see">
 													<dd>{+ new Link().toSymbol(item) +}
-														<if test="item.isa">({+item.isa+})</if>
+														<if test="item.isa">({+ item.isa +})</if>
 													</dd>
 												</for>
 											</div>
